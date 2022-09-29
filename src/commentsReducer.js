@@ -21,7 +21,18 @@ export function reducer(state, action) {
         comments: [...state.comments, newComment(action.payload.content)],
       };
     case ACTIONS.EDIT_COMMENT:
-      return state;
+      return {
+        ...state,
+        comments: state.comments.map((comment) => {
+          if (comment.id === action.payload.id) {
+            return {
+              ...comment,
+              content: action.payload.content,
+            };
+          }
+          return comment;
+        }),
+      };
     case ACTIONS.DELETE_COMMENT:
       return {
         ...state,

@@ -5,7 +5,7 @@ import { ACTIONS } from "../../commentsReducer";
 import { ReactComponent as DeleteIcon } from "../../icons/icon-delete.svg";
 import { ReactComponent as EditIcon } from "../../icons/icon-edit.svg";
 import { ReactComponent as ReplyIcon } from "../../icons/icon-reply.svg";
-import { CommentInfo, RepliesContainer, Vote } from "./../";
+import { CommentInfo, Input, RepliesContainer, Vote } from "./../";
 import {
   Actions,
   CommentContainer,
@@ -21,25 +21,28 @@ import {
 function Comment({ comment, dispatch }) {
   const currentUser = useContext(CurrentUser);
   const [open, setOpen] = useState(false);
+  const [editOpen, setEditOpen] = useState(false);
 
   function handleEdit() {
-    dispatch({
-      type: ACTIONS.EDIT_COMMENT,
-      payload: {
-        id: comment.id,
-      },
-    });
+    setEditOpen((prev) => !prev);
+
+    // dispatch({
+    //   type: ACTIONS.EDIT_COMMENT,
+    //   payload: {
+    //     id: comment.id,
+    //   },
+    // });
   }
   function handleDelete() {
     setOpen(true);
   }
   function handleReply() {
-    dispatch({
-      type: ACTIONS.ADD_REPLY,
-      payload: {
-        id: comment.id,
-      },
-    });
+    // dispatch({
+    //   type: ACTIONS.ADD_REPLY,
+    //   payload: {
+    //     id: comment.id,
+    //   },
+    // });
   }
 
   return (
@@ -79,7 +82,17 @@ function Comment({ comment, dispatch }) {
               </Reply>
             )}
           </TopBarContainer>
-          <Paragraph>{comment.content}</Paragraph>
+          {editOpen ? (
+            <Input
+              initialInput={comment.content}
+              type={"edit"}
+              dispatch={dispatch}
+              setEditOpen={setEditOpen}
+              id={comment.id}
+            />
+          ) : (
+            <Paragraph>{comment.content}</Paragraph>
+          )}
         </Wrapper>
       </CommentContainer>
       {comment.replies.length !== 0 && (

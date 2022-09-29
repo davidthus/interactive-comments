@@ -17,7 +17,7 @@ export const CommentInput = styled.textarea`
   color: ${(props) => props.theme.darkBlue};
   font-size: 1.1rem;
   resize: none;
-  width: 60%;
+  width: ${(props) => (props.edit ? "100%" : "60%")};
   height: 6rem;
 
   &::placeholder {
@@ -52,4 +52,13 @@ export const Avatar = styled.img`
 
 export const AvatarContainer = styled.div`
   width: 40px;
+`;
+
+export const Column = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
 `;
