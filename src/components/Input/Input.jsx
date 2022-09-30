@@ -10,7 +10,14 @@ import {
   Container,
 } from "./Input.style";
 
-function Input({ type, dispatch, initialInput, setEditOpen, id }) {
+function Input({
+  type,
+  dispatch,
+  initialInput,
+  setEditOpen,
+  setReplyOpen,
+  id,
+}) {
   const currentUser = useContext(CurrentUser);
   const [currentInput, setCurrentInput] = useState(initialInput);
   const input = useRef(null);
@@ -38,18 +45,20 @@ function Input({ type, dispatch, initialInput, setEditOpen, id }) {
         },
       });
     } else if (type.type === "reply") {
-      // dispatch({
-      //   type: ACTIONS.ADD_REPLY,
-      //   payload: {
-      //     content: input.current.value,
-      //   },
-      // });
+      dispatch({
+        type: ACTIONS.ADD_REPLY,
+        payload: {
+          content: input.current.value,
+          id: id,
+        },
+      });
+      setReplyOpen(false);
     }
     input.current.value = "";
   }
 
   return (
-    <Container>
+    <Container reply={type.type === "reply" ? true : false}>
       {(type.type === "reply" || type.type === "add") && (
         <AvatarContainer>
           <Avatar
@@ -77,12 +86,14 @@ function Input({ type, dispatch, initialInput, setEditOpen, id }) {
         <>
           <CommentInput
             ref={input}
-            placeholder="Add a comment..."
+            placeholder={
+              type.type === "add" ? "Add a comment..." : "Add a reply..."
+            }
             autoFocus
             required
           />
           <Button type="submit" onClick={handleClick}>
-            {type.type}
+            {type.type === "add" ? "send" : type.type}
           </Button>
         </>
       )}

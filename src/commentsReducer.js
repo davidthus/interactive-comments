@@ -41,7 +41,19 @@ export function reducer(state, action) {
         }),
       };
     case ACTIONS.ADD_REPLY:
-      return state;
+      return {
+        ...state,
+        comments: state.comments.map((comment) => {
+          if (comment.id === action.payload.id) {
+            return {
+              ...comment,
+              replies: [...comment.replies, newReply(action.payload.content)],
+            };
+          } else {
+            return comment;
+          }
+        }),
+      };
     case ACTIONS.EDIT_REPLY:
       return {
         ...state,
@@ -147,6 +159,16 @@ function newComment(content) {
     id: Date.now(),
     createdAt: "a few seconds ago",
     replies: [],
+    content: content,
+  };
+}
+
+function newReply(content) {
+  return {
+    user: currentUser,
+    score: 0,
+    id: Date.now(),
+    createdAt: "a few seconds ago",
     content: content,
   };
 }

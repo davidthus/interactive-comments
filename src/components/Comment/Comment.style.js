@@ -13,7 +13,7 @@ export const CommentContainer = styled.section`
   border-radius: 5px;
   display: grid;
   grid-template-columns: 15% 85%;
-  margin-bottom: 2rem;
+  margin-bottom: ${(props) => (props.replyOpen ? "0.7rem" : "2rem")};
   min-height: 8rem;
   padding: 1rem 1rem 1rem 0;
 `;

@@ -5,9 +5,11 @@ export const Container = styled.form`
   padding: 2%;
   display: flex;
   align-items: flex-start;
+  border-radius: 5px;
   justify-content: space-between;
   max-width: 700px;
   width: 100%;
+  margin-bottom: ${(props) => (props.reply ? "2rem" : "0rem")};
 `;
 
 export const CommentInput = styled.textarea`

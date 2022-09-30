@@ -22,27 +22,16 @@ function Comment({ comment, dispatch }) {
   const currentUser = useContext(CurrentUser);
   const [open, setOpen] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
+  const [replyOpen, setReplyOpen] = useState(false);
 
   function handleEdit() {
     setEditOpen((prev) => !prev);
-
-    // dispatch({
-    //   type: ACTIONS.EDIT_COMMENT,
-    //   payload: {
-    //     id: comment.id,
-    //   },
-    // });
   }
   function handleDelete() {
     setOpen(true);
   }
   function handleReply() {
-    // dispatch({
-    //   type: ACTIONS.ADD_REPLY,
-    //   payload: {
-    //     id: comment.id,
-    //   },
-    // });
+    setReplyOpen((prev) => !prev);
   }
 
   return (
@@ -55,7 +44,7 @@ function Comment({ comment, dispatch }) {
           dispatch={dispatch}
         />
       )}
-      <CommentContainer>
+      <CommentContainer replyOpen={replyOpen ? true : false}>
         <Vote dispatch={dispatch} id={comment.id} score={comment.score} />
         <Wrapper>
           <TopBarContainer>
@@ -95,6 +84,14 @@ function Comment({ comment, dispatch }) {
           )}
         </Wrapper>
       </CommentContainer>
+      {replyOpen && (
+        <Input
+          setReplyOpen={setReplyOpen}
+          id={comment.id}
+          type={{ type: "reply" }}
+          dispatch={dispatch}
+        />
+      )}
       {comment.replies.length !== 0 && (
         <RepliesContainer dispatch={dispatch} replies={comment.replies} />
       )}
