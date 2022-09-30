@@ -21,23 +21,23 @@ function Input({ type, dispatch, initialInput, setEditOpen, id }) {
 
   function handleClick(e) {
     e.preventDefault();
-    if (type === "add") {
+    if (type.type === "add") {
       dispatch({
         type: ACTIONS.ADD_COMMENT,
         payload: {
           content: input.current.value,
         },
       });
-    } else if (type === "edit") {
+    } else if (type.type === "edit") {
       setEditOpen(false);
       dispatch({
-        type: ACTIONS.EDIT_COMMENT,
+        type: type.action,
         payload: {
           content: currentInput,
           id: id,
         },
       });
-    } else if (type === "reply") {
+    } else if (type.type === "reply") {
       // dispatch({
       //   type: ACTIONS.ADD_REPLY,
       //   payload: {
@@ -50,7 +50,7 @@ function Input({ type, dispatch, initialInput, setEditOpen, id }) {
 
   return (
     <Container>
-      {(type === "reply" || type === "add") && (
+      {(type.type === "reply" || type.type === "add") && (
         <AvatarContainer>
           <Avatar
             src={currentUser.image.webp}
@@ -58,7 +58,7 @@ function Input({ type, dispatch, initialInput, setEditOpen, id }) {
           />
         </AvatarContainer>
       )}
-      {type === "edit" ? (
+      {type.type === "edit" ? (
         <Column>
           <CommentInput
             ref={input}
@@ -82,7 +82,7 @@ function Input({ type, dispatch, initialInput, setEditOpen, id }) {
             required
           />
           <Button type="submit" onClick={handleClick}>
-            {type}
+            {type.type}
           </Button>
         </>
       )}

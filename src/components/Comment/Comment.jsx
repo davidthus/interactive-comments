@@ -85,7 +85,7 @@ function Comment({ comment, dispatch }) {
           {editOpen ? (
             <Input
               initialInput={comment.content}
-              type={"edit"}
+              type={{ type: "edit", action: ACTIONS.EDIT_COMMENT }}
               dispatch={dispatch}
               setEditOpen={setEditOpen}
               id={comment.id}

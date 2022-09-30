@@ -43,7 +43,28 @@ export function reducer(state, action) {
     case ACTIONS.ADD_REPLY:
       return state;
     case ACTIONS.EDIT_REPLY:
-      return state;
+      return {
+        ...state,
+        comments: state.comments.map((comment) => {
+          if (comment.replies.some((reply) => reply.id === action.payload.id)) {
+            return {
+              ...comment,
+              replies: comment.replies.map((reply) => {
+                if (reply.id === action.payload.id) {
+                  return {
+                    ...reply,
+                    content: action.payload.content,
+                  };
+                } else {
+                  return reply;
+                }
+              }),
+            };
+          } else {
+            return comment;
+          }
+        }),
+      };
     case ACTIONS.DELETE_REPLY:
       return {
         ...state,

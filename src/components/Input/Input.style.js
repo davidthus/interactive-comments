@@ -18,7 +18,7 @@ export const CommentInput = styled.textarea`
   font-size: 1.1rem;
   resize: none;
   width: ${(props) => (props.edit ? "100%" : "60%")};
-  height: 6rem;
+  min-height: 6rem;
 
   &::placeholder {
     color: ${(props) => props.theme.grayishBlue};

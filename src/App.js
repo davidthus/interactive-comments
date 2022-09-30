@@ -27,7 +27,7 @@ function App() {
               <Comment key={index} dispatch={dispatch} comment={comment} />
             );
           })}
-          <Input dispatch={dispatch} type={"add"} />
+          <Input dispatch={dispatch} type={{ type: "add" }} />
         </AppContainer>
       </CurrentUser.Provider>
       <Attribution>

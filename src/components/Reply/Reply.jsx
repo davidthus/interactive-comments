@@ -5,7 +5,7 @@ import { ReactComponent as DeleteIcon } from "../../icons/icon-delete.svg";
 import { ReactComponent as EditIcon } from "../../icons/icon-edit.svg";
 import { ReactComponent as ReplyIcon } from "../../icons/icon-reply.svg";
 
-import { CommentInfo, Modal, Vote } from "./../";
+import { CommentInfo, Input, Modal, Vote } from "./../";
 import {
   Actions,
   Container,
@@ -20,8 +20,11 @@ import {
 function Reply({ reply, dispatch }) {
   const currentUser = useContext(CurrentUser);
   const [open, setOpen] = useState(false);
+  const [editOpen, setEditOpen] = useState(false);
 
-  function handleEdit() {}
+  function handleEdit() {
+    setEditOpen((prev) => !prev);
+  }
 
   function handleDelete() {
     setOpen(true);
@@ -66,7 +69,17 @@ function Reply({ reply, dispatch }) {
               </ReplyWrapper>
             )}
           </TopBarContainer>
-          <Paragraph>{reply.content}</Paragraph>
+          {editOpen ? (
+            <Input
+              initialInput={reply.content}
+              type={{ type: "edit", action: ACTIONS.EDIT_REPLY }}
+              dispatch={dispatch}
+              setEditOpen={setEditOpen}
+              id={reply.id}
+            />
+          ) : (
+            <Paragraph>{reply.content}</Paragraph>
+          )}
         </div>
       </ReplyContainer>
     </Container>
