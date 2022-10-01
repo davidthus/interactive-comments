@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer } from "react";
 import styled from "styled-components";
-import { ACTIONS, reducer } from "./commentsReducer.js";
+import { reducer } from "./commentsReducer.js";
 import { Comment, Input } from "./components";
 import Data from "./data.json";
 
@@ -15,8 +15,6 @@ function App() {
   useEffect(() => {
     localStorage.setItem("data", JSON.stringify(state));
   }, [state]);
-
-  console.log(ACTIONS, Data);
 
   return (
     <>
