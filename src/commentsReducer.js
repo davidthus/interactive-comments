@@ -49,6 +49,20 @@ export function reducer(state, action) {
               ...comment,
               replies: [...comment.replies, newReply(action.payload.content)],
             };
+          } else if (
+            comment.replies.some((reply) => reply.id === action.payload.id)
+          ) {
+            const [reply] = comment.replies.filter(
+              (reply) => reply.id === action.payload.id
+            );
+
+            return {
+              ...comment,
+              replies: [
+                ...comment.replies,
+                newReply(action.payload.content, reply.user.username),
+              ],
+            };
           } else {
             return comment;
           }
@@ -163,12 +177,13 @@ function newComment(content) {
   };
 }
 
-function newReply(content) {
+function newReply(content, username) {
   return {
     user: currentUser,
     score: 0,
     id: Date.now(),
     createdAt: "a few seconds ago",
     content: content,
+    replyingTo: username,
   };
 }

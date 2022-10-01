@@ -20,6 +20,7 @@ function Input({
 }) {
   const currentUser = useContext(CurrentUser);
   const [currentInput, setCurrentInput] = useState(initialInput);
+
   const input = useRef(null);
 
   function handleChange(e) {

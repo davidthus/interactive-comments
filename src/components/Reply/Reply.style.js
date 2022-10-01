@@ -97,3 +97,9 @@ export const ReplyWrapper = styled.button`
     outline: 2px dotted ${(props) => props.theme.moderateBlue};
   }
 `;
+
+export const AtUsername = styled.b`
+  color: ${(props) => props.theme.moderateBlue};
+  font-weight: 700;
+  font-size: 1rem;
+`;

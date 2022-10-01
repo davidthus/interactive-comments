@@ -8,6 +8,7 @@ import { ReactComponent as ReplyIcon } from "../../icons/icon-reply.svg";
 import { CommentInfo, Input, Modal, Vote } from "./../";
 import {
   Actions,
+  AtUsername,
   Container,
   Delete,
   Edit,
@@ -21,6 +22,7 @@ function Reply({ reply, dispatch }) {
   const currentUser = useContext(CurrentUser);
   const [open, setOpen] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
+  const [replyOpen, setReplyOpen] = useState(false);
 
   function handleEdit() {
     setEditOpen((prev) => !prev);
@@ -30,7 +32,9 @@ function Reply({ reply, dispatch }) {
     setOpen(true);
   }
 
-  function handleReply() {}
+  function handleReply() {
+    setReplyOpen((prev) => !prev);
+  }
 
   return (
     <Container>
@@ -78,10 +82,21 @@ function Reply({ reply, dispatch }) {
               id={reply.id}
             />
           ) : (
-            <Paragraph>{reply.content}</Paragraph>
+            <Paragraph>
+              <AtUsername>@{reply.replyingTo} </AtUsername>
+              {reply.content}
+            </Paragraph>
           )}
         </div>
       </ReplyContainer>
+      {replyOpen && (
+        <Input
+          setReplyOpen={setReplyOpen}
+          id={reply.id}
+          type={{ type: "reply" }}
+          dispatch={dispatch}
+        />
+      )}
     </Container>
   );
 }
