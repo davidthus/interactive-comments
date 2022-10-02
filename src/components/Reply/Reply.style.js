@@ -13,7 +13,6 @@ export const ReplyContainer = styled.section`
   border-radius: 5px;
   display: grid;
   grid-template-columns: 15% auto;
-  margin-bottom: 2rem;
   min-height: 8rem;
   padding: 1rem 1rem 1rem 0;
 
@@ -28,6 +27,7 @@ export const Paragraph = styled.p`
   font-weight: 400;
   color: ${(props) => props.theme.grayishBlue};
   font-size: 1rem;
+  margin-top: 0.7rem;
 `;
 
 export const TopBarContainer = styled.div`
@@ -122,6 +122,7 @@ export const MobileWrapper = styled.div`
   display: none;
   justify-content: space-between;
   align-items: center;
+  margin-top: 1.5rem;
 
   @media screen and (max-width: 630px) {
     display: flex;

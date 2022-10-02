@@ -29,6 +29,7 @@ export const Paragraph = styled.p`
   color: ${(props) => props.theme.grayishBlue};
   font-size: 1rem;
   word-break: break-word;
+  margin-top: 0.7rem;
 `;
 
 export const TopBarContainer = styled.div`
@@ -123,6 +124,7 @@ export const MobileWrapper = styled.div`
   display: none;
   justify-content: space-between;
   align-items: center;
+  margin-top: 1.5rem;
 
   @media screen and (max-width: 630px) {
     display: flex;

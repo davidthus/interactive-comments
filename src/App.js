@@ -49,6 +49,10 @@ const AppContainer = styled.main`
   align-items: center;
   padding-top: max(2.5rem, 8vmin);
   padding-bottom: max(2.5rem, 8vmin);
+
+  @media screen and (max-width: 630px) {
+    padding-inline: 1rem;
+  }
 `;
 
 const Attribution = styled.div`
