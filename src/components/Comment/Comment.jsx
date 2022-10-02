@@ -12,6 +12,7 @@ import {
   Container,
   Delete,
   Edit,
+  MobileWrapper,
   Paragraph,
   Reply,
   TopBarContainer,
@@ -45,7 +46,12 @@ function Comment({ comment, dispatch }) {
         />
       )}
       <CommentContainer replyOpen={replyOpen ? true : false}>
-        <Vote dispatch={dispatch} id={comment.id} score={comment.score} />
+        <Vote
+          dispatch={dispatch}
+          id={comment.id}
+          score={comment.score}
+          desktop
+        />
         <Wrapper>
           <TopBarContainer>
             <CommentInfo
@@ -54,7 +60,7 @@ function Comment({ comment, dispatch }) {
               username={comment.user.username}
             />
             {currentUser.username === comment.user.username && (
-              <Actions>
+              <Actions desktop>
                 <Delete onClick={handleDelete}>
                   <DeleteIcon /> Delete
                 </Delete>
@@ -65,7 +71,7 @@ function Comment({ comment, dispatch }) {
               </Actions>
             )}
             {currentUser.username !== comment.user.username && (
-              <Reply onClick={handleReply}>
+              <Reply onClick={handleReply} desktop>
                 <ReplyIcon />
                 Reply
               </Reply>
@@ -83,6 +89,18 @@ function Comment({ comment, dispatch }) {
             <Paragraph>{comment.content}</Paragraph>
           )}
         </Wrapper>
+        <MobileWrapper>
+          <Vote dispatch={dispatch} id={comment.id} score={comment.score} />
+          <Actions>
+            <Delete onClick={handleDelete}>
+              <DeleteIcon /> Delete
+            </Delete>
+            <Edit onClick={handleEdit}>
+              <EditIcon />
+              Edit
+            </Edit>
+          </Actions>
+        </MobileWrapper>
       </CommentContainer>
       {replyOpen && (
         <Input

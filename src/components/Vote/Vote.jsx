@@ -4,7 +4,7 @@ import { ReactComponent as Minus } from "../../icons/icon-minus.svg";
 import { ReactComponent as Plus } from "../../icons/icon-plus.svg";
 import { Container, VoteContainer, Wrapper } from "./Vote.style";
 
-function Vote({ dispatch, id, score }) {
+function Vote({ dispatch, id, score, desktop }) {
   function handleDownVote() {
     dispatch({
       type: ACTIONS.DOWNVOTE,
@@ -24,7 +24,7 @@ function Vote({ dispatch, id, score }) {
   }
 
   return (
-    <Container>
+    <Container desktop={desktop ? true : false}>
       <VoteContainer>
         <Wrapper onClick={handleUpVote}>
           <Plus />
