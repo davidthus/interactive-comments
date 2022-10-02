@@ -18,6 +18,7 @@ function Input({
   setEditOpen,
   setReplyOpen,
   id,
+  inRepliesContainer,
 }) {
   const currentUser = useContext(CurrentUser);
   const [currentInput, setCurrentInput] = useState(initialInput);
@@ -60,7 +61,10 @@ function Input({
   }
 
   return (
-    <Container reply={type.type === "reply" ? true : false}>
+    <Container
+      reply={type.type === "reply" ? true : false}
+      inRepliesContainer={inRepliesContainer ? true : false}
+    >
       {(type.type === "reply" || type.type === "add") && (
         <AvatarContainer desktop>
           <Avatar

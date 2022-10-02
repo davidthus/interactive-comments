@@ -10,6 +10,7 @@ export const Container = styled.form`
   max-width: 700px;
   width: 100%;
   margin-bottom: ${(props) => (props.reply ? "2rem" : "0rem")};
+  margin-bottom: ${(props) => props.inRepliesContainer && 0};
 
   @media screen and (max-width: 630px) {
     flex-direction: column;

@@ -15,6 +15,7 @@ export const ReplyContainer = styled.section`
   grid-template-columns: 15% auto;
   min-height: 8rem;
   padding: 1rem 1rem 1rem 0;
+  margin-bottom: ${(props) => (props.replyOpen ? "0.5rem" : 0)};
 
   @media screen and (max-width: 630px) {
     display: flex;

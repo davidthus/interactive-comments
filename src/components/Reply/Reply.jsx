@@ -47,7 +47,7 @@ function Reply({ reply, dispatch }) {
           dispatch={dispatch}
         />
       )}
-      <ReplyContainer>
+      <ReplyContainer replyOpen={replyOpen ? true : false} inRepliesContainer>
         <Vote dispatch={dispatch} id={reply.id} score={reply.score} desktop />
         <div>
           <TopBarContainer>
@@ -116,6 +116,7 @@ function Reply({ reply, dispatch }) {
           id={reply.id}
           type={{ type: "reply" }}
           dispatch={dispatch}
+          inRepliesContainer
         />
       )}
     </Container>
