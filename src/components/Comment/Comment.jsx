@@ -91,15 +91,23 @@ function Comment({ comment, dispatch }) {
         </Wrapper>
         <MobileWrapper>
           <Vote dispatch={dispatch} id={comment.id} score={comment.score} />
-          <Actions>
-            <Delete onClick={handleDelete}>
-              <DeleteIcon /> Delete
-            </Delete>
-            <Edit onClick={handleEdit}>
-              <EditIcon />
-              Edit
-            </Edit>
-          </Actions>
+          {currentUser.username === comment.user.username && (
+            <Actions>
+              <Delete onClick={handleDelete}>
+                <DeleteIcon /> Delete
+              </Delete>
+              <Edit onClick={handleEdit}>
+                <EditIcon />
+                Edit
+              </Edit>
+            </Actions>
+          )}
+          {currentUser.username !== comment.user.username && (
+            <Reply onClick={handleReply}>
+              <ReplyIcon />
+              Reply
+            </Reply>
+          )}
         </MobileWrapper>
       </CommentContainer>
       {replyOpen && (

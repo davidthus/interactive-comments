@@ -47,7 +47,10 @@ export function reducer(state, action) {
           if (comment.id === action.payload.id) {
             return {
               ...comment,
-              replies: [...comment.replies, newReply(action.payload.content)],
+              replies: [
+                ...comment.replies,
+                newReply(action.payload.content, comment.user.username),
+              ],
             };
           } else if (
             comment.replies.some((reply) => reply.id === action.payload.id)

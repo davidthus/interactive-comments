@@ -16,6 +16,12 @@ export const ReplyContainer = styled.section`
   margin-bottom: 2rem;
   min-height: 8rem;
   padding: 1rem 1rem 1rem 0;
+
+  @media screen and (max-width: 630px) {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+  }
 `;
 
 export const Paragraph = styled.p`
@@ -34,6 +40,10 @@ export const Actions = styled.div`
   display: flex;
   align-items: center;
   gap: 2rem;
+
+  @media screen and (max-width: 630px) {
+    display: ${(props) => (props.desktop ? "none" : "flex")};
+  }
 `;
 
 export const Edit = styled.button`
@@ -96,10 +106,24 @@ export const ReplyWrapper = styled.button`
   &:focus {
     outline: 2px dotted ${(props) => props.theme.moderateBlue};
   }
+
+  @media screen and (max-width: 630px) {
+    display: ${(props) => (props.desktop ? "none" : "flex")};
+  }
 `;
 
 export const AtUsername = styled.b`
   color: ${(props) => props.theme.moderateBlue};
   font-weight: 700;
   font-size: 1rem;
+`;
+
+export const MobileWrapper = styled.div`
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+
+  @media screen and (max-width: 630px) {
+    display: flex;
+  }
 `;

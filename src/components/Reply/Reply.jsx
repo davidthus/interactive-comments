@@ -12,6 +12,7 @@ import {
   Container,
   Delete,
   Edit,
+  MobileWrapper,
   Paragraph,
   ReplyContainer,
   ReplyWrapper,
@@ -47,7 +48,7 @@ function Reply({ reply, dispatch }) {
         />
       )}
       <ReplyContainer>
-        <Vote dispatch={dispatch} id={reply.id} score={reply.score} />
+        <Vote dispatch={dispatch} id={reply.id} score={reply.score} desktop />
         <div>
           <TopBarContainer>
             <CommentInfo
@@ -56,7 +57,7 @@ function Reply({ reply, dispatch }) {
               username={reply.user.username}
             />
             {currentUser.username === reply.user.username && (
-              <Actions>
+              <Actions desktop>
                 <Delete onClick={handleDelete}>
                   <DeleteIcon /> Delete
                 </Delete>
@@ -67,7 +68,7 @@ function Reply({ reply, dispatch }) {
               </Actions>
             )}
             {currentUser.username !== reply.user.username && (
-              <ReplyWrapper onClick={handleReply}>
+              <ReplyWrapper onClick={handleReply} desktop>
                 <ReplyIcon />
                 Reply
               </ReplyWrapper>
@@ -88,6 +89,26 @@ function Reply({ reply, dispatch }) {
             </Paragraph>
           )}
         </div>
+        <MobileWrapper>
+          <Vote dispatch={dispatch} id={reply.id} score={reply.score} />
+          {currentUser.username === reply.user.username && (
+            <Actions>
+              <Delete onClick={handleDelete}>
+                <DeleteIcon /> Delete
+              </Delete>
+              <Edit onClick={handleEdit}>
+                <EditIcon />
+                Edit
+              </Edit>
+            </Actions>
+          )}
+          {currentUser.username !== reply.user.username && (
+            <ReplyWrapper onClick={handleReply}>
+              <ReplyIcon />
+              Reply
+            </ReplyWrapper>
+          )}
+        </MobileWrapper>
       </ReplyContainer>
       {replyOpen && (
         <Input
