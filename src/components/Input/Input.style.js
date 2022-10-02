@@ -10,6 +10,13 @@ export const Container = styled.form`
   max-width: 700px;
   width: 100%;
   margin-bottom: ${(props) => (props.reply ? "2rem" : "0rem")};
+
+  @media screen and (max-width: 630px) {
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1rem;
+  }
 `;
 
 export const CommentInput = styled.textarea`
@@ -29,6 +36,10 @@ export const CommentInput = styled.textarea`
   &:focus {
     border: 1px solid ${(props) => props.theme.darkBlue};
   }
+
+  @media screen and (max-width: 630px) {
+    width: 90%;
+  }
 `;
 
 export const Button = styled.button`
@@ -45,6 +56,10 @@ export const Button = styled.button`
   &:hover {
     opacity: 0.7;
   }
+
+  @media screen and (max-width: 630px) {
+    display: ${(props) => (props.desktop ? "none" : "flex")};
+  }
 `;
 
 export const Avatar = styled.img`
@@ -54,6 +69,10 @@ export const Avatar = styled.img`
 
 export const AvatarContainer = styled.div`
   width: 40px;
+
+  @media screen and (max-width: 630px) {
+    display: ${(props) => (props.desktop ? "none" : "block")};
+  }
 `;
 
 export const Column = styled.div`
@@ -63,4 +82,15 @@ export const Column = styled.div`
   align-items: flex-end;
   justify-content: space-between;
   gap: 2rem;
+`;
+
+export const MobileWrapper = styled.div`
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+
+  @media screen and (max-width: 630px) {
+    display: flex;
+  }
 `;

@@ -8,6 +8,7 @@ import {
   Column,
   CommentInput,
   Container,
+  MobileWrapper,
 } from "./Input.style";
 
 function Input({
@@ -61,7 +62,7 @@ function Input({
   return (
     <Container reply={type.type === "reply" ? true : false}>
       {(type.type === "reply" || type.type === "add") && (
-        <AvatarContainer>
+        <AvatarContainer desktop>
           <Avatar
             src={currentUser.image.webp}
             alt={`${currentUser.username}'s avatar`}
@@ -93,9 +94,20 @@ function Input({
             autoFocus
             required
           />
-          <Button type="submit" onClick={handleClick}>
+          <Button type="submit" onClick={handleClick} desktop>
             {type.type === "add" ? "send" : type.type}
           </Button>
+          <MobileWrapper>
+            <AvatarContainer>
+              <Avatar
+                src={currentUser.image.webp}
+                alt={`${currentUser.username}'s avatar`}
+              />
+            </AvatarContainer>
+            <Button type="submit" onClick={handleClick}>
+              {type.type === "add" ? "send" : type.type}
+            </Button>
+          </MobileWrapper>
         </>
       )}
     </Container>
